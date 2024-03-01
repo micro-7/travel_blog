@@ -1,0 +1,66 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+
+{% block css %}
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+        .c-font{
+            font-family: Montserrat, sans-serif;
+        }
+        .custom:hover{
+            box-shadow: 0 0 10px gray;
+        }
+        .containerr{
+            width: 99.125%;
+
+        }
+        .title-c{
+            text-align: center;
+            margin-top: 5px;
+            
+        }
+        .title-c:hover{
+            color: gray;
+        }
+    </style>
+{% endblock css %}
+    
+
+{% block content %}
+<div class="containerr ">
+    <div class="row">
+        <div class="col-lg-12 px-0">
+            <img src="{% static 'images\blogbg.jpg' %}"  alt="background image" class="img-fluid" width="1920px">
+        </div>
+    </div>
+</div>
+<div class="jumbotron text-center my-5">
+    <h1 class="display-4 c-font">Welcome To Our Travel Blog</h1>
+    <p class="lead c-font">where we help you travel the world virtually....</p>
+    <hr class="my-4 ">
+    <p class="c-font">-By Mihir Tandon</p>
+  </div>
+
+
+<div class="container">
+    <div class="row">
+        {% for items in blogs %}
+        <div class="col-lg-4 col-md-4 col-sl-6">
+            <a href="{% url 'detailed_blog' items.id %}">
+            <img src="{{items.image.url}}" class="rounded img-fluid custom" alt="...">
+            <h5 class="title-c fst-italic c-font ">{{items.title}}</h5>
+            </a>
+        </div>
+        {% empty %}
+        <div class="alert alert-warning text-center" role="alert">
+            <h4 class="alert-heading">No Blogs found!</h4>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+    
+    
+{% endblock content %}
+    
